@@ -1,12 +1,15 @@
 {
-  "name": "x-faq",
+  "name": "FAQ-system-demo",
   "version": "1.0.0",
-  "description": "xkeshi FAQ",
+  "description": "FAQ-system-demo",
   "author": "leenty <leenty@qq.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
-    "start": "node build/dev-server.js",
+    "start": "node app.js",
+    "server": "node app.js",
+    "server_debug": "node --inspect app.js",
+    "server_pm2": "pm2 start app.js --name faq --watch && pm2 logs faq",
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",

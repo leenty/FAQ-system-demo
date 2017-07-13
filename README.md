@@ -1,14 +1,14 @@
-# x-faq
+# FAQ-system-demo
 
-> xkeshi FAQ
+> FAQ-system-demo
 
-## Build Setup
+## Build Setup [frontend]
 
 ``` bash
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# frontend serve with hot reload at localhost:8080
 npm run dev
 
 # build for production with minification
@@ -27,4 +27,14 @@ npm run e2e
 npm test
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Build Setup [backend]
+
+```bash
+# backend serve at localhost:8889
+npm run server
+# or
+npm run start
+
+# backend serve with hot reload at localhost:8889
+npm run server_pm2
+```
