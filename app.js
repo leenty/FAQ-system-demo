@@ -63,10 +63,8 @@ router.get('*', ctx => {
     ? ctx.redirect('/admin', 302)
     : ctx.redirect('/', 302)
   ctx.status = 302
-  console.log(path)
+  console.log('redirect', path)
 })
-// router.get('*', staticServe('./frontend'))
-// router.get('/admin', staticServe('./dist'))
 
 app.use(router.routes()).use(router.allowedMethods())
 

@@ -13,19 +13,19 @@ const judge = function (returnModel) {
   return returnModel.judge()
 }
 
-const success = function (data = {}, msg = '') {
+const success = function (data = {}, message = '', status = 200) {
   return new judgeModel({
-    data: data,
-    status: 200,
-    message: msg
+    data,
+    status,
+    message
   })
 }
 
-const fail = function (data = {}, msg = '') {
-  return new judge({
-    data: data,
-    status: 403,
-    message: msg
+const fail = function (message = '', status = 403, data = {}) {
+  return new judgeModel({
+    data,
+    status,
+    message
   })
 }
 

@@ -1,16 +1,48 @@
-const faq = require('../models/faq.js')
-const judgeModel = require('../utils/judgeModel.js')
+const FAQ = require('../models/FAQ.js')
+const judge = require('../utils/judgeModel.js')
 
-const getFAQList = ctx => {
-  ctx.body = judgeModel.success(faq.getFAQList())
+const FAQList = async ctx => {
+  ctx.body = judge.success(await FAQ.List())
 }
 
-const setFAQ = async ctx => {
-  const newFAQ = ctx.request.body
-  ctx.body = judgeModel.success(await faq.setFAQ(newFAQ))
+const FAQTitleList = async ctx => {
+  ctx.body = judge.success(await FAQ.TitleList())
+}
+
+const createFAQ = async ctx => {
+  let FAQobject = ctx.request.body
+  let title = FAQ.TitleList()
+
+  FAQobject.title.trim() &&
+  !title.includes(FAQobject.title)
+    ? ctx.body = judge.success(await FAQ.create(FAQobject))
+    : ctx.body = judge.fail('新建FAQ的标题为空或已存在！')
+}
+
+const updateFAQ = async ctx => {
+  let FAQobject = ctx.request.body
+  const index = ctx.params.index
+
+  if (!FAQobject.title.trim()) {
+    ctx.body = judge.fail('更新FAQ的标题为空！')
+    return 
+  }
+
+  FAQobject.content.trim()
+    ? ctx.boxy = judge.success(await FAQ.update(index, FAQobject))
+    : ctx.body = judge.fail('更新FAQ的内容为空！')
+}
+
+const delFAQ = async ctx => {
+  const index = ctx.params.index
+
+  ctx.boxy = judge.success(await FAQ.del(index))
 }
 
 module.exports = {
-  getFAQList,
-  setFAQ
+  FAQList,
+  FAQTitleList,
+  createFAQ,
+  updateFAQ,
+  delFAQ
 }
