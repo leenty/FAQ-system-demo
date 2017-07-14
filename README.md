@@ -1,6 +1,6 @@
 # FAQ-system-demo
 
-> FAQ-system-demo
+> FAQ system demo by vue2 and koa2
 
 ## Build Setup [frontend]
 

@@ -1,6 +1,7 @@
 <template lang="pug">
   #app
     img(src="./assets/logo.png")
+    router-link(to="/qwer") qwer
     router-view
 </template>
 

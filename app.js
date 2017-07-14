@@ -1,6 +1,8 @@
 const config = require('./server/config')
 const app = new (require('koa'))()
 const json = require('koa-json')
+const staticServe = require('koa-static')
+const mount = require('koa-mount')
 // const jwt = require('koa-jwt');
 // const logger = require('koa-logger')
 // const cors = require('koa2-cors')
@@ -9,6 +11,8 @@ const json = require('koa-json')
 const router = require('./server/routes/routes.js')
 
 app.use(require('koa-bodyparser')())
+
+// app.use(historyApiFallback())
 
 app.use(async ({request, response, url}, next) => {
   let start = new Date()
@@ -51,8 +55,20 @@ app.on('error', (err, ctx) => {
 //   credentials:  config.credentials
 // }))
 
+app.use(mount('/', staticServe('./frontend')))
+app.use(mount('/admin', staticServe('./dist')))
+router.get('*', ctx => {
+  const path = ctx.request.url.split('/')
+  path[1] === 'admin'
+    ? ctx.redirect('/admin', 302)
+    : ctx.redirect('/', 302)
+  ctx.status = 302
+  console.log(path)
+})
+// router.get('*', staticServe('./frontend'))
+// router.get('/admin', staticServe('./dist'))
 
-app.use(router.routes())
+app.use(router.routes()).use(router.allowedMethods())
 
 app.listen(config.port, () => {
   console.log(`server create at http://localhost:${config.port}`)
