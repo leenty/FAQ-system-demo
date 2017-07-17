@@ -11,10 +11,11 @@ const FAQTitleList = async ctx => {
 
 const createFAQ = async ctx => {
   let FAQobject = ctx.request.body
-  let title = FAQ.TitleList()
+  let title = await FAQ.TitleList()
+  console.log(title.indexOf(FAQobject.title))
 
   FAQobject.title.trim() &&
-  !title.includes(FAQobject.title)
+  title.indexOf(FAQobject.title) < 0
     ? ctx.body = judge.success(await FAQ.create(FAQobject))
     : ctx.body = judge.fail('新建FAQ的标题为空或已存在！')
 }

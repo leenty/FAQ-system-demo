@@ -4,7 +4,7 @@ const json = require('koa-json')
 const staticServe = require('koa-static')
 const mount = require('koa-mount')
 // const jwt = require('koa-jwt');
-// const logger = require('koa-logger')
+const logger = require('koa-logger')
 // const cors = require('koa2-cors')
 // const uaParser = require('ua-parser-js')
 
