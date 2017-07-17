@@ -3,7 +3,7 @@ module.exports = {
     'port': '8889',
     'token_secret': 'xkeshi-faq',
     'allowOrigin': '*',
-    'allowHeaders': ['Authorization'],
+    'allowHeaders': ['Authorization', 'Content-Type'],
     'allowMethods': ['GET', 'HEAD', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
     'maxAge': 60 * 60 * 24,
     'credentials': true

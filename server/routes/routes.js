@@ -10,6 +10,9 @@ router.use('/api', group(route => {
 }))
 router.use('/admin_api', group(route => {
   route.post('/faq', FAQ.createFAQ)
+  route.put('/faq1/:index', ctx => {
+    console.log(ctx)
+  })
   route.put('/faq/:index', FAQ.updateFAQ)
   route.del('/faq/:index', FAQ.delFAQ)
 }))
