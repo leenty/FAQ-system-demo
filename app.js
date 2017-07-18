@@ -5,7 +5,7 @@ const staticServe = require('koa-static')
 const mount = require('koa-mount')
 // const jwt = require('koa-jwt');
 const logger = require('koa-logger')
-const cors = require('koa2-cors')
+// const cors = require('koa2-cors')
 // const uaParser = require('ua-parser-js')
 
 const router = require('./server/routes/routes.js')
@@ -43,17 +43,17 @@ app.on('error', (err, ctx) => {
   console.log('server serror!', err)
 })
 
-app.use(cors({
-  origin: ({ request }) =>
-                config.allowOrigin.includes('*') &&
-                '*' ||
-                config.allowOrigin.includes(request.header.origin) &&
-                request.header.origin,
-  allowMethods: config.allowMethods,
-  allowHeaders: config.allowHeaders,
-  maxAge:       config.maxAge,
-  credentials:  config.credentials
-}))
+// app.use(cors({
+//   origin: ({ request }) =>
+//                 config.allowOrigin.includes('*') &&
+//                 '*' ||
+//                 config.allowOrigin.includes(request.header.origin) &&
+//                 request.header.origin,
+//   allowMethods: config.allowMethods,
+//   allowHeaders: config.allowHeaders,
+//   maxAge:       config.maxAge,
+//   credentials:  config.credentials
+// }))
 
 app.use(mount('/', staticServe('./frontend')))
 app.use(mount('/admin', staticServe('./dist')))
